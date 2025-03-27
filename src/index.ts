@@ -25,14 +25,14 @@ async function main() {
             messages: [{
                 role: 'user', content: [
                     {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": `data:image/${imageType};base64,${image2Base64(imagePath)}`
+                        type: "image_url",
+                        image_url: {
+                            url: `data:image/${imageType};base64,${image2Base64(imagePath)}`
                         }
                     },
                     {
-                        "type": "text",
-                        "text": GHIBILI
+                        type: "text",
+                        text: GHIBILI
                     },
                 ]
             }],
