@@ -12,12 +12,14 @@ const openai = new OpenAI({
 const imagePath = process.argv[2];
 
 if (!imagePath) {
-    console.error('请提供图片路径作为参数');
+    console.error('Please provide an image path as an argument');
     process.exit(1);
 }
 
+const imageType = imagePath.split('.').pop();
 async function main() {
     try {
+        console.log("Start")
         const stream = await openai.chat.completions.create({
             model: 'gpt-4o-all',
             messages: [{
@@ -25,7 +27,7 @@ async function main() {
                     {
                         "type": "image_url",
                         "image_url": {
-                            "url": `data:image/png;base64,${image2Base64(imagePath)}`
+                            "url": `data:image/${imageType};base64,${image2Base64(imagePath)}`
                         }
                     },
                     {
@@ -45,7 +47,7 @@ async function main() {
         }
         process.stdout.write('\n');
     } catch (error) {
-        console.error('处理图片时发生错误:', error);
+        console.error('Error processing image:', error);
         process.exit(1);
     }
 }
